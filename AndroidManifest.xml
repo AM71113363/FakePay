@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="sss.am71113363.fakepayapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+	<uses-sdk
+		android:minSdkVersion="28"
+		android:targetSdkVersion="34"/>
+	
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-feature android:name="android.hardware.nfc.hce" android:required="false"/>
+	
+
+	<application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/FloatingTheme"
+		android:resizeableActivity = "true">
+        <activity
+            android:name=".MainActivity"
+			android:excludeFromRecents="true"
+			android:launchMode="singleTask"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		
+				<intent-filter>
+					<action android:name="android.intent.action.VIEW"/>
+					<category android:name="android.intent.category.DEFAULT"/>
+					<category android:name="android.intent.category.BROWSABLE"/>
+					<data android:scheme="https" android:host="www.android.com" android:path="/payapp"/>
+					<data android:scheme="https" android:host="www.android.com" android:pathPrefix="/payapp/"/>
+				</intent-filter>
+			
+		</activity>
+		<service 
+			android:name=".ThePayFake" 
+			android:enabled="true" 
+			android:permission="android.permission.BIND_NFC_SERVICE" android:exported="true">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.OFF_HOST_APDU_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.nfc.cardemulation.off_host_apdu_service" android:resource="@xml/off_hce"/>
+        </service>
+        <service 
+			android:name=".TheFakePay" 
+			android:enabled="true" 
+			android:permission="android.permission.BIND_NFC_SERVICE" android:exported="true">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.nfc.cardemulation.host_apdu_service" android:resource="@xml/hce_aids"/>
+        </service>
+
+
+
+    </application>
+
+</manifest>

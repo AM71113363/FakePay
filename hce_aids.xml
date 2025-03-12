@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android" 
+	xmlns:app="http://schemas.android.com/apk/res-auto" 
+	xmlns:aapt="http://schemas.android.com/aapt" 
+	android:description="@string/fake_hnd" 
+	android:requireDeviceUnlock="false" 
+	android:apduServiceBanner="@drawable/ic_launcher">
+    <aid-group android:category="other">
+        <aid-filter android:name="4F53452E5641532E3031"/>
+        <aid-filter android:name="A000000476D0000101"/>
+        <aid-filter android:name="A000000476D0000111"/>
+    </aid-group>
+</host-apdu-service>
