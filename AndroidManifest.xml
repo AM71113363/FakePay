@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 	<uses-sdk
 		android:minSdkVersion="28"
-		android:targetSdkVersion="34"/>
+		android:targetSdkVersion="29"/>
 	
     <uses-permission android:name="android.permission.NFC"/>
     <uses-feature android:name="android.hardware.nfc.hce" android:required="false"/>
@@ -37,9 +37,9 @@
 			
 		</activity>
 		<service 
-			android:name=".ThePayFake" 
-			android:enabled="true" 
-			android:permission="android.permission.BIND_NFC_SERVICE" android:exported="true">
+			android:name=".TheOffPay" 
+			android:exported="true" 
+			android:permission="android.permission.BIND_NFC_SERVICE">
             <intent-filter>
                 <action android:name="android.nfc.cardemulation.action.OFF_HOST_APDU_SERVICE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -47,9 +47,9 @@
             <meta-data android:name="android.nfc.cardemulation.off_host_apdu_service" android:resource="@xml/off_hce"/>
         </service>
         <service 
-			android:name=".TheFakePay" 
-			android:enabled="true" 
-			android:permission="android.permission.BIND_NFC_SERVICE" android:exported="true">
+			android:name=".TheHostPay" 
+			android:exported="true" 
+			android:permission="android.permission.BIND_NFC_SERVICE">
             <intent-filter>
                 <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
